@@ -54,15 +54,18 @@ public class PostController {
         return postService.get(postId);
     }
 
+    // 글이 1억개다 가정
+    // -> 비용이 너무 많이 든다.
+    // -> DB글 모두 조회하는 경우 -> DB가 뻗을 수 있다.
+    // -> DB에서 서버로 전달하는 시간, 트래픽비용 많이 소비된다.
+    // 따라서 페이징 처리가 필요하다.
+
+
     @GetMapping("/posts")
     public List<PostResponse> getList() {
         return postService.getList();
     }
 
-    /**
-     * /posts -> 글 전체 조회(검색 + 페이징)
-     * /posts/{postId} -> 글 한개만 조회
-     * */
 }
 
 
